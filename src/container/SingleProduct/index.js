@@ -99,14 +99,20 @@ export default function SingleProduct() {
               <AddCartButton onClick={() => handleCart(product._id)}>
                 Add to Cart
               </AddCartButton>
-              <WishListButton onClick={() => handleLikeUnlike(product._id)}>
-                {user?.wishlist?.includes(product._id) ? (
-                  <AiFillHeart style={{ color: "#FF4345" }} />
-                ) : (
-                  <AiOutlineHeart />
-                )}
-                <span className="px-2">{user.wishlist.includes(product._id)? 'Remove from WishList ':'Add to WishList'}</span>
-              </WishListButton>
+              {user?.wishlist ? (
+                <WishListButton onClick={() => handleLikeUnlike(product._id)}>
+                  {user?.wishlist?.includes(product._id) ? (
+                    <AiFillHeart style={{ color: "#FF4345" }} />
+                  ) : (
+                    <AiOutlineHeart />
+                  )}
+                  <span className="px-2">
+                    {user?.wishlist?.includes(product._id)
+                      ? "Remove from WishList "
+                      : "Add to WishList"}
+                  </span>
+                </WishListButton>
+              ) : null}
             </CartSection>
           </div>
         </div>
