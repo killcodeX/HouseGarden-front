@@ -9,7 +9,7 @@ const openNotificationWithIcon = (type, title, message) => {
 };
 
 const baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:5000" : "";
+  process.env.NODE_ENV === "development" ? "http://localhost:5000" : "https://house-garden-back.vercel.app";
 
 export const ApiFunc = axios.create({ baseURL: baseURL });
 
