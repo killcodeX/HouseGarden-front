@@ -137,7 +137,7 @@ export default function OrderProduct({ item }) {
         </Panel>
       </Collapse>
       <FlexSection className="mt-2">
-        {item.status !== "confirmed" ? (
+        {item.status == "confirmed" ? (
           <Dropdown
             overlay={menu}
             onVisibleChange={() => setBookId(item._id)}
