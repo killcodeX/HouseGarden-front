@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Rate, Divider, InputNumber } from "antd";
+import { Rate, Divider, InputNumber, message } from "antd";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import {
   SectionWrapper,
@@ -33,6 +33,7 @@ export default function SingleProduct() {
   const { id } = useParams();
   const product = useSelector((state) => state.products.singleProduct);
   const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth.isAuthenticated);
   const [like, setLike] = useState(false);
   const [numberItem, setNumberItem] = useState(1);
 
@@ -53,7 +54,10 @@ export default function SingleProduct() {
   };
 
   const handleCart = (id) => {
-    dispatch(receiveProductToCart(id, numberItem));
+    if(auth){
+      dispatch(receiveProductToCart(id, numberItem));
+    }
+    message.error('Login/Register to add Product to Cart!!');
   };
 
   if (!product?.image) {
