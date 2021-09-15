@@ -56,8 +56,9 @@ export default function SingleProduct() {
   const handleCart = (id) => {
     if(auth){
       dispatch(receiveProductToCart(id, numberItem));
+    } else{
+      message.error('Login/Register to add Product to Cart!!');
     }
-    message.error('Login/Register to add Product to Cart!!');
   };
 
   if (!product?.image) {

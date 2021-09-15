@@ -57,7 +57,7 @@ export default function SimpleProduct({ item }) {
             <Reviews>{`${item.totalReviews} Reviews`}</Reviews>
           </FlexSection>
           <FlexSection>
-            <BookButton><Link to={`/product/${item._id}`}>View Product</Link></BookButton>
+            <BookButton><Link style={{color:'inherit', textDecoration:'none'}} to={`/product/${item._id}`}>View Product</Link></BookButton>
             <LoveWrapper onClick={() => handleLikeUnlike(item._id)}>
               {user?.wishlist?.includes(item._id) ? (
                 <AiFillHeart style={{ color: "#FF4345" }} />
