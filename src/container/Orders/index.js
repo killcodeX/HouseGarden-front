@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Divider } from "antd";
 import useWindowSize from "../../helpers/windowSize";
 import OrderSideMenus from "./sideMenus";
@@ -6,8 +6,7 @@ import {
   SectionWrapper,
   SectionTitle,
   SectionSubTitle,
-  SideMenuWrapper,
-  NoDataBanner
+  NoDataBanner,
 } from "./style";
 import OrderProduct from "../../components/OrderProducts";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,13 +14,8 @@ import { getorderData } from "../../redux/actions/postactions";
 
 export default function Orders() {
   const { width } = useWindowSize();
-  const dispatch = useDispatch();
   const products = useSelector((state) => state.products.orderProducts);
-  const [value, setValue] = useState("Recent Orders");
-
-  useEffect(() => {
-    dispatch(getorderData({ status: value }));
-  }, [value]);
+  const orderType = useSelector((state) => state.products.orderType)
 
   // if (products?.length == 0) {
   //   return <span>Loading...</span>;
@@ -30,14 +24,12 @@ export default function Orders() {
   return (
     <SectionWrapper>
       {width > 1000 ? (
-        <SideMenuWrapper>
-          <OrderSideMenus value={value} setValue={setValue} />
-        </SideMenuWrapper>
+        <OrderSideMenus />
       ) : null}
       <div className="container">
         <SectionTitle>My Orders</SectionTitle>
         <Divider />
-        <SectionSubTitle>{value}</SectionSubTitle>
+        <SectionSubTitle>{orderType}</SectionSubTitle>
         <div className="row mt-4">
           {products?.length == 0 ? (
             <NoDataBanner>

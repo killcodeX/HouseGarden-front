@@ -10,6 +10,7 @@ import {
   Removing_Product_Wishlist,
   AddOrderDetails,
   OrderData,
+  OrderType
 } from "../actions/constactions";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   cartPricing: {},
   orderDetails: {},
   orderProducts: [],
+  orderType:"Recent Orders",
 };
 
 // Reducers
@@ -133,6 +135,12 @@ const ProductReducer = (state = initialState, action) => {
         ...state,
         orderProducts: action.payload,
       };
+
+    case OrderType:
+      return {
+        ...state,
+        orderType: action.payload
+      }
 
     default:
       return state;

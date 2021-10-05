@@ -10,7 +10,8 @@ import {
   Removing_Product_Wishlist,
   AddOrderDetails,
   OrderData,
-  CancelOrder
+  CancelOrder,
+  OrderType
 } from "./constactions";
 
 import {
@@ -115,4 +116,11 @@ export const getCancelOrder = (id) => async (dispatch) => {
     type: CancelOrder,
     payload: result
   })
+}
+
+export const getOrderType = (value) => {
+  return {
+    type: OrderType,
+    payload: value,
+  }
 }

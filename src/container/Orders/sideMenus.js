@@ -2,22 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Divider, Checkbox } from "antd";
 import { AiOutlineDoubleLeft } from "react-icons/ai";
 import useWindowSize from "../../helpers/windowSize";
-import { SideWarpper } from "../../components/SideBar/style";
-import { SideHeader, IconWrapper, SideBarTitle } from "./style";
+import { SideMenuWrapper, SideHeader, IconWrapper, SideBarTitle } from "./style";
 import { order } from "../../fakedata";
-import { getorderData } from "../../redux/actions/postactions";
+import { getorderData, getOrderType } from "../../redux/actions/postactions";
 import { useDispatch } from "react-redux";
 
-export default function OrderSideMenus({sideOpen, setSideOpen, setValue, value}) {
+export default function OrderSideMenus({sideOpen, setSideOpen}) {
   const { width } = useWindowSize();
   const dispatch = useDispatch();
+  const [value, setValue] = useState("Recent Orders");
+
+  useEffect(() => {
+    dispatch(getorderData({ status: value }));
+    dispatch(getOrderType(value))
+  }, [value]);
+
 
   function handleChange(checkedValues) {
     setValue(checkedValues.target.value);
   }
 
   return (
-    <SideWarpper>
+    <SideMenuWrapper>
       <SideHeader>
         <SideBarTitle>Order History</SideBarTitle>
         {width <= 480 ? (
@@ -42,6 +48,6 @@ export default function OrderSideMenus({sideOpen, setSideOpen, setValue, value})
           );
         })}
       </div>
-    </SideWarpper>
+    </SideMenuWrapper>
   );
 }

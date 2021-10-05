@@ -48,7 +48,7 @@ export default function Address({ amount, setCurrentStep }) {
     <CartStepWrapper>
       <Form onFinish={formik.handleSubmit}>
         <div className="row">
-          <FormLabel className='mb-1'>Shipped to</FormLabel>
+          <FormLabel>Shipped to</FormLabel>
           <div className="col-sm-12 col-md-6">
             <Form.Item
               name="fname"
